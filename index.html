@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeonWave | Ses Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="visualizer"></canvas>
+
+  <div class="drop-overlay" id="dropOverlay">
+    <div class="drop-box">🎵 Ses dosyasını buraya bırak</div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="overlay">
+    <header class="brand">
+      <h1>NEON<span>WAVE</span></h1>
+      <p>Web Audio Visualizer</p>
+    </header>
+
+    <div class="bottom">
+      <div class="player">
+        <div class="track-info">
+          <div class="status-dot" id="statusDot"></div>
+          <div class="track-text">
+            <div class="track-title" id="trackTitle">Ses kaynağı seçilmedi</div>
+            <div class="track-sub" id="trackSub">MP3 yükle veya mikrofonu aç</div>
+          </div>
+        </div>
+
+        <div class="progress-wrap disabled" id="progressWrap">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="seek" min="0" max="100" value="0" step="0.1" aria-label="İlerleme">
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+          <label class="btn" for="fileInput">📁 MP3 Yükle</label>
+          <input type="file" id="fileInput" accept="audio/*,.mp3" hidden>
+          <button class="btn btn-play" id="playBtn" disabled aria-label="Oynat / Duraklat">▶</button>
+          <button class="btn btn-mic" id="micBtn">🎤 Mikrofonu Aç</button>
+        </div>
+
+        <div class="settings">
+          <div class="mode-switch">
+            <button class="mode-btn active" data-mode="both">Hepsi</button>
+            <button class="mode-btn" data-mode="circle">Dairesel</button>
+            <button class="mode-btn" data-mode="wave">Dalga</button>
+          </div>
+          <label class="slider-group">🔊
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8" aria-label="Ses seviyesi">
+          </label>
+          <label class="slider-group">⚡
+            <input type="range" id="sensitivity" min="0.5" max="2" step="0.05" value="1" aria-label="Hassasiyet">
+          </label>
+        </div>
+      </div>
+      <p class="hint">Boşluk = Oynat/Duraklat • M = Mikrofon • Dosyayı sürükleyip bırakabilirsin</p>
+    </div>
+  </div>
+
+  <audio id="audio" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
